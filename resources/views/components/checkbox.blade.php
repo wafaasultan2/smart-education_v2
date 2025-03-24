@@ -1,0 +1,1 @@
+<input type="checkbox" {!! $attributes->merge(['class' => 'rounded '.session('theme','light').':bg-gray-900 border-gray-300 '.session('theme','light').':border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 '.session('theme','light').':focus:ring-indigo-600 '.session('theme','light').':focus:ring-offset-gray-800']) !!}>
