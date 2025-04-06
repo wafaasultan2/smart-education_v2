@@ -46,7 +46,7 @@ class ReportTeacherController extends Controller
 
     public function test()
     {
-       
+
         $pdf = SnappyPdf::loadView('reports.lecture-report')->setPaper('A4');
         return $pdf->stream('report.pdf');
     }

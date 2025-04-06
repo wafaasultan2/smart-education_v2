@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('address');
             $table->text('image')->nullable();
             $table->timestamps();
+
+            $table->unsignedBigInteger('department_id'); // إضافة حقل department_id
             $table->index('num_job', 'teacher_num_job_index');
             $table->index('name', 'teacher_name_index');
             $table->index('email', 'teacher_email_index');

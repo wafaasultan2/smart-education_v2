@@ -22,10 +22,11 @@ class TeacherForm extends Component
     public $uploadError = false;
     public $uploadErrorMessage = '';
 
+    // تحديث الحقول لتتناسب مع نظام الجامعة إذا لزم الأمر
     protected $rules = [
         'num_job' => 'required|integer',
         'name' => 'required|string|max:255',
-        'academic_degree' => 'required|string',
+        'academic_degree' => 'required|string', // قد تكون الدرجات العلمية بحاجة لتعديل لتناسب أكاديميات الجامعة
         'phone' => 'required|string|max:15',
         'email' => 'required|email|max:255',
         'address' => 'required|string|max:255',
@@ -50,7 +51,6 @@ class TeacherForm extends Component
         $this->uploadError = false;
         $this->uploadErrorMessage = '';
 
-
         try {
             $this->validate(['image' => 'required|image|max:2048'], [
                 'image.required' => 'الصورة مطلوبة.',
@@ -71,8 +71,10 @@ class TeacherForm extends Component
     {
         $this->validate();
 
+        // تخزين صورة المعلم
         $imagePath = $this->image->store('teachers', 'public');
 
+        // إضافة المعلم الجديد
         $teacher = Teacher::create([
             'num_job' => $this->num_job,
             'name' => $this->name,
@@ -82,12 +84,17 @@ class TeacherForm extends Component
             'address' => $this->address,
             'image' => $imagePath,
         ]);
+
+        // إبلاغ الواجهة بأن المعلم تم إضافته
         $this->dispatch('teacherCreated', $teacher->id);
+
+        // إعادة ضبط النموذج
         $this->reset();
     }
 
     public function render()
     {
+        // استخدام "الجامعة" بدلاً من "الكلية" في العرض إذا لزم الأمر
         return view('livewire.teacher.teacher-form');
     }
 }

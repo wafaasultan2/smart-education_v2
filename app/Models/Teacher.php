@@ -16,6 +16,7 @@ class Teacher extends Model
         'address',
         'image',
         'status',
+        'department_id',
     ];
 
 
@@ -63,5 +64,5 @@ class Teacher extends Model
         return $this->hasMany(AttendanceRecord::class, 'teacher_id');
     }
 
-    
+
 }

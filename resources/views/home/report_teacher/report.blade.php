@@ -96,6 +96,9 @@
                                         App\Enums\AcademicDegree::{$teacher->academic_degree}->getValue()
                                         }}
                                     </div>
+                                    <div class="col-lg-12">
+                                        القسم: {{ $teacher->department->name }} <!-- عرض اسم القسم -->
+                                    </div>
                                 </div>
                             </div>
 
